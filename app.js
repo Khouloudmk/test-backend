@@ -3,7 +3,9 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/dataBase');
 const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/productRoutes');
-const deliveryRoutes = require('./routes/deliveryRoutes')
+const deliveryRoutes = require('./routes/deliveryRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+const bodyParser=require("body-parser");
 
 
 dotenv.config();
@@ -12,6 +14,7 @@ const PORT = process.env.PORT || 3000;
 connectDB();
 
 app.use(express.json());
+app.use('/api/orders', orderRoutes);
 app.use('/api', deliveryRoutes)
 app.use('/api', userRoutes);
 app.use('/api/product', productRoutes);
