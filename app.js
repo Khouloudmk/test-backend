@@ -14,8 +14,12 @@ const PORT = process.env.PORT || 3000;
 connectDB();
 
 app.use(express.json());
+<<<<<<< HEAD
 app.use('/api/orders', orderRoutes);
 app.use('/api', deliveryRoutes)
+=======
+app.use('/api/delivery', deliveryRoutes)
+>>>>>>> d24785244d1a461d946da82e0ce5262be3a243ee
 app.use('/api', userRoutes);
 app.use('/api/product', productRoutes);
 app.get('/', async (req, res) => {
