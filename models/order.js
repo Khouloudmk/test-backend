@@ -5,14 +5,14 @@ const OrderSchema = new mongoose.Schema({
   email: { type: String, required: true },
   items: [
     {
-      _id: { type: mongoose.Schema.Types.ObjectId},
+      _id: { type: mongoose.Schema.Types.ObjectId, required: true },
+      name: { type: String, required: true },
+      price: { type: Number, required: true },
       quantity: { type: Number, required: true },
-    },
+    }
   ],
-  price: {type: Number, required:true},
-  status: { type: String, required: false, default: 'Pending',
-  enum:['pending','confirmed','delivered']},
-  createdAt: { type: Date, default: Date.now },
-});
+  totalAmount: { type: Number, required: true },
+  status: { type: String, default: 'pending' },
+}, { timestamps: true });
 
 module.exports = mongoose.model('Order', OrderSchema);
