@@ -90,7 +90,7 @@ const generatePdf = async (req, res) => {
     pdf.fontSize(25).text('Product Review Report', 100, 100);
 
     products.forEach((product) => {
-      pdf.moveDown().fontSize(18).text(`Product Name: ${product.name}`);
+      pdf.moveDown().fontSize(18).text(`Product Name: ${product.title}`);
       pdf
         .moveDown()
         .fontSize(18)
