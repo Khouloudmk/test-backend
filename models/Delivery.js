@@ -1,10 +1,5 @@
 const mongoose = require('mongoose')
 const deliverySchema = new mongoose.Schema({
-  orderId: {
-    type: String,
-    ref: 'Order',
-    required: true,
-  },
   address: {
     type: String,
     required: true,

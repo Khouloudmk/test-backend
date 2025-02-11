@@ -2,8 +2,6 @@ const Delivery = require('../models/Delivery')
 const PDFDocument = require('pdfkit')
 const fs = require('fs')
 
-
-
 const generateDeliveryPDF = async (req, res) => {
   try {
     const { id } = req.params
@@ -25,7 +23,7 @@ const generateDeliveryPDF = async (req, res) => {
     doc.fontSize(20).text('Delivery Details', { align: 'center' })
     doc.moveDown()
     doc.fontSize(12).text(`Delivery ID: ${delivery._id}`)
-    doc.text(`Order ID: ${delivery.orderId}`)
+   /*doc.text(`Order ID: ${delivery.orderId}`)*/
     doc.text(`Address: ${delivery.address}`)
     doc.text(`Delivery Date: ${new Date(delivery.deliveryDate).toDateString()}`)
     doc.text(`Status: ${delivery.status}`)
@@ -40,13 +38,13 @@ const generateDeliveryPDF = async (req, res) => {
 // créer une livraison
 const createDelivery = async (req, res) => {
   try {
-    const {orderId, address, costumerName, status} = req.body
+    const { address, costumerName, status} = req.body
     const newDelivery = new Delivery({
       address,
       deliveryDate:new Date(),
       costumerName,
       status,
-      orderId,
+      
     })
     
     // sauvegarder dans db
@@ -86,12 +84,12 @@ const getDeliveryById = async (req, res) => {
 
 const updateDelivery = async (req, res) => {
   try {
-    const { orderId, address, deliveryDate, status } = req.body
+    const {  address, deliveryDate, status } = req.body
 
     // update with id
     const updatedDelivery = await Delivery.findByIdAndUpdate(
       req.params.id,
-      { orderId,address, deliveryDate, status },
+      {address, deliveryDate, status },
       { new: true }  
     )
 
@@ -170,7 +168,7 @@ const getDeliveriesByStatus = async (req, res) => {
     res.status(500).json({ message: 'Error fetching deliveries by status.', error })
   }
 }
-
+/* 
 const getDeliveriesByOrderId = async (req, res) => {
   try {
     const { orderId } = req.body
@@ -186,7 +184,7 @@ const getDeliveriesByOrderId = async (req, res) => {
     res.status(500).json({ message: 'Error fetching deliveries by orderId.', error })
   }
 }
-
+*/
 
 module.exports = {createDelivery,getAllDeliveries,updateDelivery,deleteDelivery,getDeliveryById,
-  getDeliveriesByAddress,getDeliveriesByDate,getDeliveriesByStatus,getDeliveriesByOrderId,generateDeliveryPDF,}
+  getDeliveriesByAddress,getDeliveriesByDate,getDeliveriesByStatus,generateDeliveryPDF,}
