@@ -16,7 +16,11 @@ connectDB();
 app.use(express.json());
 app.use('/api/orders', orderRoutes);
 app.use('/api/delivery', deliveryRoutes)
+<<<<<<< HEAD
 app.use('/api/user', userRoutes);
+=======
+app.use('/api', userRoutes);
+>>>>>>> b088dba (Added orderPDF folder and added PDF and calculator works)
 app.use('/api/product', productRoutes);
 app.get('/', async (req, res) => {
   try {
